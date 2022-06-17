@@ -6,10 +6,6 @@ import DropdownIcon from "./icons/DropdownIcon";
 const classes = {
   item: {
     base: "px-4 h-10 w-full flex items-center text-sm font-semibold hover:bg-blue-400 hover:text-white",
-    button: {
-      active: "",
-      disabled: "",
-    },
   },
 };
 
@@ -40,7 +36,7 @@ const Dropdown: FC<Props> = ({ children, items }) => {
       onClick={() => setOpen((isOpen) => !isOpen)}
     >
       <div className="relative inline-flex items-center cursor-pointer text-sm">
-        {children}
+        <span className="pointer-events-none">{children}</span>
         <DropdownIcon />
 
         {isOpen && (
@@ -48,15 +44,7 @@ const Dropdown: FC<Props> = ({ children, items }) => {
             {items.map((item) => (
               <>
                 {item.type == "button" ? (
-                  <button
-                    className={clsx(
-                      classes.item.base,
-                      item.onClick
-                        ? classes.item.button.active
-                        : classes.item.button.disabled
-                    )}
-                    onClick={item.onClick}
-                  >
+                  <button className={classes.item.base} onClick={item.onClick}>
                     {item.label}
                   </button>
                 ) : (
