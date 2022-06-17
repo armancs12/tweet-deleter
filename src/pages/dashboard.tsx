@@ -8,10 +8,13 @@ const DashboardPage: NextPage = () => {
     <div>
       <DashboardNav />
       <div>
-        <div className="pt-4 bg-gray-100">
-          <SearchFormContainer />
-        </div>
+        <SearchFormContainer />
         <SearchFilters />
+        <section className="max-w-7xl mx-auto mt-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="lg:col-start-1 lg:col-end-3 text-[17px] text-gray-500">
+            No tweets found
+          </div>
+        </section>
       </div>
     </div>
   );
