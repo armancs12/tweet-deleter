@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Button from "./Button";
+import Dropdown from "./Dropdown";
 import HeaderLink from "./HeaderLink";
 import DropdownIcon from "./icons/DropdownIcon";
 import LogoIcon from "./icons/LogoIcon";
@@ -54,14 +56,14 @@ const Header = () => {
                   </span>
                   <DropdownIcon />
                 </button>
-                <button className="bg-base-95 relative ml-2 inline-flex h-9 items-center justify-center rounded-full px-4 font-semibold outline-none border border-gray-300 bg-gray-100 hover:bg-gray-300 text-blue-400 transition-colors duration-200 ease-out ">
+                <Button type="secondary" className="px-4 ml-2">
                   <div
                     className="flex items-center justify-center"
                     style={{ visibility: "visible" }}
                   >
                     Sign out
                   </div>
-                </button>
+                </Button>
               </div>
             </div>
           </div>
