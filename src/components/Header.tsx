@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import HeaderLink from "./HeaderLink";
 import DropdownIcon from "./icons/DropdownIcon";
 import LogoIcon from "./icons/LogoIcon";
@@ -12,6 +13,8 @@ const HEADER_LINKS = [
 ];
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <header className="mx-auto max-w-xlarge flex h-16 w-full max-w-screen-xl flex-row justify-between px-4 lg:mt-8 lg:h-12">
       <Link href={"/"} passHref>
@@ -26,7 +29,7 @@ const Header = () => {
               key={route}
               route={route}
               title={title}
-              isActive={route === "/features"}
+              isActive={router.asPath.startsWith(route)}
             />
           ))}
           <div>

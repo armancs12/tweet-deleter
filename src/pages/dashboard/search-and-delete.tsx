@@ -1,10 +1,10 @@
 import { NextPage } from "next";
-import DashboardNav from "../components/DashboardNav";
-import SearchFilters from "../components/SearchFilters";
-import SearchFormContainer from "../components/SearchFormContainer";
-import TweetsTable from "../components/TweetsTable";
+import DashboardNav from "../../components/DashboardNav";
+import SearchFilters from "../../components/SearchFilters";
+import SearchFormContainer from "../../components/SearchFormContainer";
+import TweetsTable from "../../components/TweetsTable";
 
-const DashboardPage: NextPage = () => {
+const SearchAndDeletePage: NextPage = () => {
   return (
     <div>
       <DashboardNav />
@@ -21,4 +21,4 @@ const DashboardPage: NextPage = () => {
   );
 };
 
-export default DashboardPage;
+export default SearchAndDeletePage;

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import DashboardNavLink from "./DashboardNavLink";
 import CogIcon from "./icons/CogIcon";
 import GiftIcon from "./icons/GiftIcon";
@@ -34,6 +35,8 @@ const DASHBOARD_NAV_LINKS = [
 ];
 
 const DashboardNav = () => {
+  const router = useRouter();
+
   return (
     <section className="relative flex h-16 w-full max-w-full items-center justify-center px-4 shadow-sm lg:mt-8 bg-gray-100">
       <nav className="hide-scrollbars grid h-full grid-flow-col items-center gap-8 overflow-x-scroll whitespace-nowrap lg:gap-12">
@@ -43,7 +46,7 @@ const DashboardNav = () => {
             route={route}
             label={label}
             Icon={Icon}
-            isActive={route === "/dashboard/search-and-delete"}
+            isActive={route === router.pathname}
           />
         ))}
         <div className="h-full w-4 md:hidden"></div>
