@@ -1,6 +1,12 @@
-const TwitterIcon = () => (
+import { FC } from "react";
+
+type Props = {
+  invertColor?: boolean;
+};
+
+const TwitterIcon: FC<Props> = ({ invertColor: invert = false }) => (
   <svg
-    fill="#1DA1F2"
+    fill={invert ? "#FFF" : "#1DA1F2"}
     stroke="none"
     width="40"
     height="40"
