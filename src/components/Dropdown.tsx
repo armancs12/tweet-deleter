@@ -36,7 +36,7 @@ const Dropdown: FC<Props> = ({ children, items }) => {
       onClick={() => setOpen((isOpen) => !isOpen)}
     >
       <div className="relative inline-flex items-center cursor-pointer text-sm">
-        <span className="pointer-events-none">{children}</span>
+        <div className="pointer-events-none flex items-center">{children}</div>
         <DropdownIcon />
 
         {isOpen && (

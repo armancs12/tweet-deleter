@@ -26,10 +26,8 @@ const SearchFilterButton: FC<Props> = ({ label, isLocked }) => {
     >
       <div className="pointer-events-none">
         <div className="flex items-center">
-          <span className="text-sm font-semibold leading-5 text-gray-600">
-            {label}
-          </span>
-          <span className="ml-2 text-sm leading-5 text-gray-600">Any</span>
+          <span className="text-sm font-semibold text-gray-600 ">{label}</span>
+          <span className="ml-2 text-sm text-gray-600">Any</span>
           {isLocked && (
             <div className="ml-2">
               <LockIcon />
