@@ -19,3 +19,8 @@
 .hide-scrollbars::-webkit-scrollbar {
   display: none;
 }
+
+.features-hero {
+  background-image: url(/image-features-hero.svg);
+  background-repeat: no-repeat;
+}
