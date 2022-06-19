@@ -1,21 +1,32 @@
+import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Button from "./Button";
-import Dropdown from "./Dropdown";
 import HeaderLink from "./HeaderLink";
 import DropdownIcon from "./icons/DropdownIcon";
 import LogoIcon from "./icons/LogoIcon";
 import MenuIcon from "./icons/MenuIcon";
+import TwitterIcon from "./icons/TwitterIcon";
 
-const HEADER_LINKS = [
-  { title: "Features", route: "/features" },
-  { title: "Pricing", route: "/pricing" },
-  { title: "Help", route: "/faq" },
-  { title: "Dashboard", route: "/dashboard" },
-];
+const HEADER_LINKS = {
+  base: [
+    { label: "Features", route: "/features" },
+    { label: "Pricing", route: "/pricing" },
+    { label: "Help", route: "/faq" },
+  ],
+  authenticated: [{ label: "Dashboard", route: "/dashboard" }],
+};
 
 const Header = () => {
   const router = useRouter();
+  const { data, status } = useSession();
+  const isLoading = status === "loading";
+  const isAuthenticated = status === "authenticated" && data != null;
+
+  const routes = [
+    ...HEADER_LINKS.base,
+    ...(isAuthenticated ? HEADER_LINKS.authenticated : []),
+  ];
 
   return (
     <header className="mx-auto max-w-xlarge flex h-16 w-full max-w-screen-xl flex-row justify-between px-4 lg:mt-8 lg:h-12">
@@ -26,44 +37,58 @@ const Header = () => {
       </Link>
       <div className="flex items-center">
         <nav className="hidden grid-flow-col items-center gap-8 lg:grid">
-          {HEADER_LINKS.map(({ title, route }) => (
+          {routes.map(({ label, route }) => (
             <HeaderLink
               key={route}
               route={route}
-              title={title}
+              title={label}
               isActive={router.asPath.startsWith(route)}
             />
           ))}
           <div>
             <div className="inline-flex h-12 items-center justify-center px-2 py-1.5 text-sm">
               <div className="flex">
-                <button
-                  page-name="profile"
-                  className="relative flex items-center"
-                >
-                  <img
-                    src="http://pbs.twimg.com/profile_images/1441865911611297797/nm0NZiHM_bigger.jpg"
-                    alt="User profile image"
-                    className="mr-1 rounded-full rtl:ml-1"
-                    width="36"
-                    height="36"
-                  />
-                  <span
-                    page-name="profile"
-                    className="text-base-10 font-normal ml-2 rtl:ml-0 rtl:mr-2"
+                {isAuthenticated ? (
+                  <>
+                    <button
+                      page-name="profile"
+                      className="relative flex items-center"
+                    >
+                      <img
+                        src={data.user!.image!}
+                        alt="User profile image"
+                        className="mr-1 rounded-full"
+                        width="36"
+                        height="36"
+                      />
+                      <span page-name="profile" className="font-normal ml-2">
+                        {data.user!.name!}
+                      </span>
+                      <DropdownIcon />
+                    </button>
+                    <Button
+                      type="secondary"
+                      className="px-4 ml-2"
+                      onClick={() => signOut()}
+                    >
+                      <div
+                        className="flex items-center justify-center"
+                        style={{ visibility: "visible" }}
+                      >
+                        Sign out
+                      </div>
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    type="secondary"
+                    className="px-4 h-[52px] text-[17px]"
+                    onClick={() => signIn("twitter")}
                   >
-                    Serhat
-                  </span>
-                  <DropdownIcon />
-                </button>
-                <Button type="secondary" className="px-4 ml-2">
-                  <div
-                    className="flex items-center justify-center"
-                    style={{ visibility: "visible" }}
-                  >
-                    Sign out
-                  </div>
-                </Button>
+                    <TwitterIcon />
+                    <span className="ml-2">Sign in with Twitter</span>
+                  </Button>
+                )}
               </div>
             </div>
           </div>
