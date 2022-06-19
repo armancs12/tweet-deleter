@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Dropdown from "./Dropdown";
 import TweetsTableItem from "./TweetsTableItem";
+import TweetsTableSelectedBar from "./TweetsTableSelectedBar";
 
 const tweets = [
   {
@@ -56,6 +57,12 @@ const TweetsTable = () => {
 
   return (
     <div className="border border-gray-300 rounded">
+      {selectedTweets.length > 0 && (
+        <TweetsTableSelectedBar
+          entriesCount={selectedTweets.length}
+          onDelete={() => {}}
+        />
+      )}
       <div>
         <div className="flex items-center p-4">
           <div className="flex-1 text-left">
