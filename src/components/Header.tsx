@@ -1,4 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Button from "./Button";
@@ -54,7 +55,7 @@ const Header = () => {
                       page-name="profile"
                       className="relative flex items-center"
                     >
-                      <img
+                      <Image
                         src={data.user!.image!}
                         alt="User profile image"
                         className="mr-1 rounded-full"

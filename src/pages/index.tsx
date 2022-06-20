@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import Button from "../components/Button";
 import TwitterIcon from "../components/icons/TwitterIcon";
 
@@ -44,7 +45,7 @@ const Home: NextPage = () => {
 
           {/* Image Section */}
           <div className="flex flex-col items-center">
-            <img
+            <Image
               src="/image-homepage.png"
               alt="Delete multiple tweets with one click"
               width={528}

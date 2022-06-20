@@ -7,7 +7,10 @@ const nextConfig = {
       destination: "/dashboard/search-and-delete",
       permanent: true,
     },
-  ]
-}
+  ],
+  images: {
+    domains: ["pbs.twimg.com"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
